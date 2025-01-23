@@ -1,5 +1,6 @@
-package autotests.DuckController;
+package tests.DuckController;
 
+import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
-public class Create extends TestNGCitrusSpringSupport {
+public class Create extends DuckActionsClient {
 
     @Test(description = "Создание утки из резины")
     @CitrusTest
@@ -41,37 +42,10 @@ public class Create extends TestNGCitrusSpringSupport {
     }
 
 
-    //утка
-    public void Duck(TestCaseRunner runner, String id) {
-        runner.$(http().client("http://localhost:2222")
-                .send()
-                .post("/api/duck/create")
-                .queryParam("id", id));
-    }
-    //Валидация ответа
-    public void validateResponse(TestCaseRunner runner, String responseMessage) {
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .contentType(MediaType.APPLICATION_JSON_VALUE).body(responseMessage));
-    }
 
 
-            //Создание утки
-        public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
-            runner.$(http().client("http://localhost:2222")
-                    .send()
-                    .post("/api/duck/create")
-                    .message()
-                    .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .body("{\n" + "  \"color\": \"" + color + "\",\n"
-                            + "  \"height\": " + height + ",\n"
-                            + "  \"material\": \"" + material + "\",\n"
-                            + "  \"sound\": \"" + sound + "\",\n"
-                            + "  \"wingsState\": \"" + wingsState
-                            + "\"\n" + "}"));
-        }
+
+
     }
 
 
