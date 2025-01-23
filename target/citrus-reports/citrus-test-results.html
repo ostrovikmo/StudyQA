@@ -116,10 +116,10 @@
             <h1>Tests results (1 Tests)</h1>
             <table id="test-results">
                 <tbody>
-                    <tr class="failure" onmouseover="showTooltip('Properties.successfulGetProprtiesInfo', event);" onmouseout="hideTooltip();">
-    <th>Properties.successfulGetProprties
-        <span class="tooltip" id="Properties.successfulGetProprtiesInfo">
-        <b><i>Properties.successfulGetProprties</i></b><br/>
+                    <tr class="failure" onmouseover="showTooltip('Swim.successfulSwimInfo', event);" onmouseout="hideTooltip();">
+    <th>Swim.successfulSwim
+        <span class="tooltip" id="Swim.successfulSwimInfo">
+        <b><i>Swim.successfulSwim</i></b><br/>
         <b>Author:</b> <br/>
         <b>Status:</b> DRAFT<br/>
         <b>Creation Date:</b> <br/>
@@ -130,19 +130,19 @@
     </th>
     <td>FAILURE</td>
 </tr>
-<tr><td colspan="2"><div class="error-detail"><pre>com.consol.citrus.exceptions.CitrusRuntimeException: Failed to parse JSON text
+<tr><td colspan="2"><div class="error-detail"><pre>org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:2222/api/duck/create": Connect to localhost:2222 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:2222 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
  
-	 at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:116)
-	 at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:58)
-	 at com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
-	 at com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
-	 at com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	 at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:791)
+	 at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:757)
+	 at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:627)
+	 at com.consol.citrus.http.client.HttpClient.send(HttpClient.java:131)
+	 at com.consol.citrus.actions.SendMessageAction.doExecute(SendMessageAction.java:165)
 	 at com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
 	 at com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
 	 at com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
 	 at com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
-	 at autotests.duckActionController.Properties.validateResponse(Properties.java:45)
-	 at autotests.duckActionController.Properties.successfulGetProprties(Properties.java:27)
+	 at autotests.duckActionController.Swim.createDuck(Swim.java:50)
+	 at autotests.duckActionController.Swim.successfulSwim(Swim.java:20)
 	 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	 at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
