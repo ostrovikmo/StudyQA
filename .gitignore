@@ -1,7 +1,7 @@
 .gradle
 .idea
 .studyQA.iml
-.build
-.target
-.out
-.src/main/java/duck-service-1.0.2.jar
+/build
+/target
+/out
+src/main/java/duck-service-1.0.2.jar
