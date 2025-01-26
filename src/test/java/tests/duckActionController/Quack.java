@@ -6,16 +6,18 @@ import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
+import payloads.Duck;
+import payloads.WingState;
 
 public class Quack extends duckActionsClient {
 
     @Test(description = "Проверка, что уточка с существующим id крякает")
     @CitrusTest
     public void successfulQuack(@Optional @CitrusResource TestCaseRunner runner) {
-        createDuck(runner, "yellow", 0.15, "rubber", "quack", "FIXED");
+        Duck duck = new Duck().color("yellow").height(0.15).material("rubber").sound("quack").wingsState(WingState.FIXED);
+        createDuck(runner, duck);
         getDuckId(runner);
         duckQuack(runner, "${duckId}", 1, 1);
-        validateResponse(runner, "{\n" + "  \"message\": \"Quack\"\n" + "}");
+        validateResponse(runner, "duckActionController/successfulQuack.json");
     }
 }
-

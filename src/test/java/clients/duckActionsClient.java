@@ -3,8 +3,11 @@ package clients;
 import autotests.endpointConfig;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.http.client.HttpClient;
+import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
 import com.consol.citrus.testng.spring.TestNGCitrusSpringSupport;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,59 +16,48 @@ import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
 @ContextConfiguration(classes= {endpointConfig.class})
-public class duckActionsClient extends TestNGCitrusSpringSupport {
 
+public class duckActionsClient extends TestNGCitrusSpringSupport {
     @Autowired
     protected HttpClient DuckService;
 
-    //Создание утки
-    public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .post("/api/duck/create")
+     public void validateResponse(TestCaseRunner runner, String responseMessage) {
+         runner.$(http().client(DuckService)
+                 .receive()
+                .response(HttpStatus.OK)
                 .message()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body("{\n" + "  \"color\": \"" + color + "\",\n"
-                        + "  \"height\": " + height + ",\n"
-                        + "  \"material\": \"" + material + "\",\n"
-                        + "  \"sound\": \"" + sound + "\",\n"
-                        + "  \"wingsState\": \"" + wingsState
-                        + "\"\n" + "}"));
+                .body(new ClassPathResource(responseMessage)));
     }
 
     //получение ID утки
     public void getDuckId(TestCaseRunner runner) {
         runner.$(http()
-                .client("http://localhost:2222")
+                .client(DuckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
                 .extract(fromBody().expression("$.id", "duckId")));
     }
-    //Валидация ответа
-    public void validateResponse(TestCaseRunner runner, String responseMessage) {
-        runner.$(http()
-                .client(DuckService)
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .contentType(MediaType.APPLICATION_JSON_VALUE).body(responseMessage));
-    }
+
+    //новый вариант создания утки
+    public void createDuck(TestCaseRunner runner, Object body) {
+            runner.$(http().client(DuckService)
+                    .send()
+                    .post("/api/duck/create")
+                    .message()
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
+        }
+
     //обновление свойств утки
-    public void duckUpdate(TestCaseRunner runner,String id,  String color, double height, String material, String sound, String wingsState) {
-        runner.$(http()
-                .client(DuckService)
+    public void duckUpdate(TestCaseRunner runner,Object body) {
+        runner.$(http().client(DuckService)
                 .send()
                 .put("/api/duck/update")
                 .message()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body("{\n" + "  \"color\": \"" + color + "\",\n"
-                        + "  \"height\": " + height + ",\n"
-                        + "  \"material\": \"" + material + "\",\n"
-                        + "  \"sound\": \"" + sound + "\",\n"
-                        + "  \"wingsState\": \"" + wingsState
-                        + "\"\n" + "}"));
+                .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
     }
 
     //Плыви утка
@@ -105,7 +97,7 @@ public class duckActionsClient extends TestNGCitrusSpringSupport {
     }
 
     //вызов созданной утки по id
-    public void Duck(TestCaseRunner runner, String id) {
+    public void getDuck(TestCaseRunner runner, String id) {
         runner.$(http()
                 .client(DuckService)
                 .send()
