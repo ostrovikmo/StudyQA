@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestSuite" time="0.0" tests="2" errors="0" skipped="0" failures="2">
+<testsuite name="tests.duckController.Update" time="0.0" tests="2" errors="0" skipped="0" failures="2">
     <testcase name="Update.successfulUpdateColorHeight" classname="tests.duckController.Update" time="0.0">
       <failure type="com.consol.citrus.exceptions.CitrusRuntimeException" message="Failed to get correlation key for &apos;citrus_message_correlator_HttpClient&apos;">
         <![CDATA[

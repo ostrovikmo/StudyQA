@@ -3,11 +3,8 @@ package autotests;
 import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.http.client.HttpClientBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.test.context.ContextConfiguration;
 
-
-
-public class EndpointConfig {
+public class endpointConfig {
 
         @Bean("DuckService")
         public HttpClient DuckService() {
