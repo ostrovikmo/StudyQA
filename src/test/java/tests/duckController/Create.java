@@ -1,6 +1,6 @@
 package tests.duckController;
 
-import clients.duckActionsClient;
+import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
-public class Create extends duckActionsClient {
+public class Create extends DuckActionsClient {
 
     @Test(description = "Создание утки из резины")
     @CitrusTest

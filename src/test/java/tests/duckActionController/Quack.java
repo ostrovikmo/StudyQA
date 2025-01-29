@@ -1,6 +1,6 @@
 package tests.duckActionController;
 
-import clients.duckActionsClient;
+import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
-public class Quack extends duckActionsClient {
+public class Quack extends DuckActionsClient {
 
     @Test(description = "Проверка, что уточка с существующим id крякает")
     @CitrusTest

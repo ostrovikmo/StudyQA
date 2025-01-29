@@ -1,6 +1,6 @@
 package tests.duckActionController;
 
-import clients.duckActionsClient;
+import clients.DuckActionsClient;
 import payloads.Duck;
 import payloads.WingState;
 import com.consol.citrus.TestCaseRunner;
@@ -9,7 +9,7 @@ import com.consol.citrus.annotations.CitrusTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 
-public class Swim  extends duckActionsClient {
+public class Swim  extends DuckActionsClient {
 
     @Test(description = "Проверка того, что уточка поплыла")
     @CitrusTest

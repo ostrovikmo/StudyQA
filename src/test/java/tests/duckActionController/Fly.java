@@ -1,6 +1,6 @@
 package tests.duckActionController;
 
-import clients.duckActionsClient;
+import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -10,7 +10,7 @@ import payloads.Duck;
 import payloads.WingState;
 
 
-public class Fly extends duckActionsClient {
+public class Fly extends DuckActionsClient {
 
     @Test(description = "Проверка, что уточка с существующим id c активными крыльями летит")
     @CitrusTest

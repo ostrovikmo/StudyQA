@@ -1,6 +1,6 @@
 package tests.duckActionController;
 
-import clients.duckActionsClient;
+import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
-public class Properties extends duckActionsClient {
+public class Properties extends DuckActionsClient {
 
     @Test(description = "Проверка какие свойства имеет утка")
     @CitrusTest

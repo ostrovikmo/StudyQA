@@ -1,6 +1,6 @@
 package tests.duckController;
 
-import clients.duckActionsClient;
+import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
-public class Update extends duckActionsClient {
+public class Update extends DuckActionsClient {
 
         @Test(description = "Проверка, что у уточки с существующим id были изменены цвет и высота")
         @CitrusTest

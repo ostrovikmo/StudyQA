@@ -1,6 +1,6 @@
 package clients;
 
-import autotests.endpointConfig;
+import autotests.EndpointConfig;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
@@ -15,9 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
-@ContextConfiguration(classes= {endpointConfig.class})
+@ContextConfiguration(classes= {EndpointConfig.class})
 
-public class duckActionsClient extends TestNGCitrusSpringSupport {
+public class DuckActionsClient extends TestNGCitrusSpringSupport {
     @Autowired
     protected HttpClient DuckService;
 
