@@ -4,10 +4,15 @@ import clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
+
+@Epic("Тесты на duck-action-controller")
+@Feature("эндпоинт /api/duck/action/fly")
 
 
 public class Fly extends DuckActionsClient {
@@ -16,7 +21,7 @@ public class Fly extends DuckActionsClient {
     @CitrusTest
     public void successfulFlyActive(@Optional @CitrusResource TestCaseRunner runner) {
         Duck duck = new Duck().color("yellow").height(0.15).material("rubber").sound("quack").wingsState(WingState.ACTIVE);
-        createDuck(runner, duck);
+        duckCreate(runner, duck);
         getDuckId(runner);
         duckFly(runner, "${duckId}");
         validateResponse(runner, "duckActionController/successfulFlyActive.json");
@@ -26,7 +31,7 @@ public class Fly extends DuckActionsClient {
     @CitrusTest
     public void FlyFixed(@Optional @CitrusResource TestCaseRunner runner) {
         Duck duck = new Duck().color("yellow").height(0.15).material("rubber").sound("quack").wingsState(WingState.FIXED);
-        createDuck(runner, duck);
+        duckCreate(runner, duck);
         getDuckId(runner);
         duckFly(runner, "${duckId}");
         validateResponse(runner, "duckActionController/notFly.json");
@@ -36,7 +41,7 @@ public class Fly extends DuckActionsClient {
     @CitrusTest
     public void FlyUndefined(@Optional @CitrusResource TestCaseRunner runner) {
         Duck duck = new Duck().color("yellow").height(0.15).material("rubber").sound("quack").wingsState(WingState.UNDEFINED);
-        createDuck(runner, duck);
+        duckCreate(runner, duck);
         getDuckId(runner);
         duckFly(runner, "${duckId}");
         validateResponse(runner, "duckActionController/notFly.json");
