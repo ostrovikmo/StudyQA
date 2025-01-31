@@ -1,6 +1,6 @@
-package tests.duckActionController;
+package autotests.tests.duckController;
 
-import clients.DuckActionsClient;
+import autotests.clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -9,15 +9,15 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
-public class Quack extends DuckActionsClient {
+public class Delete extends DuckActionsClient {
 
-    @Test(description = "Проверка, что уточка с существующим id крякает")
+    @Test(description = "Проверка, что уточка с существующим id удалена")
     @CitrusTest
-    public void successfulQuack(@Optional @CitrusResource TestCaseRunner runner) {
+    public void successfulDelete(@Optional @CitrusResource TestCaseRunner runner) {
         Duck duck = new Duck().color("yellow").height(0.15).material("rubber").sound("quack").wingsState(WingState.FIXED);
         createDuck(runner, duck);
         getDuckId(runner);
-        duckQuack(runner, "${duckId}", 1, 1);
-        validateResponse(runner, "duckActionController/successfulQuack.json");
+        duckDelete(runner, "${duckId}");
+        validateResponse(runner, "duckController/successfulDelete.json");
     }
 }

@@ -1,4 +1,4 @@
-package payloads;
+package autotests.payloads;
 
 public enum WingState {
     ACTIVE,

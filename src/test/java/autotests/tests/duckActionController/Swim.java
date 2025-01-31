@@ -1,8 +1,12 @@
-package tests.duckActionController;
+package autotests.tests.duckActionController;
 
+<<<<<<< Updated upstream:src/test/java/tests/duckActionController/Swim.java
 import clients.DuckActionsClient;
 import payloads.Duck;
 import payloads.WingState;
+=======
+import autotests.clients.DuckActionsClient;
+>>>>>>> Stashed changes:src/test/java/autotests/tests/duckActionController/Swim.java
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;

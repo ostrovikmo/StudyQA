@@ -1,13 +1,13 @@
-package tests.duckActionController;
+package autotests.tests.duckActionController;
 
-import clients.DuckActionsClient;
+import autotests.clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
-import payloads.Duck;
-import payloads.WingState;
+import autotests.payloads.Duck;
+import autotests.payloads.WingState;
 
 public class Properties extends DuckActionsClient {
 

@@ -1,4 +1,4 @@
-package payloads;
+package autotests.payloads;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -8,8 +8,9 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(fluent = true)
-public class Duck {  @JsonProperty("color")
-private String color;
+public class Duck {
+    @JsonProperty("color")
+    private String color;
     @JsonProperty("height")
     private Double height;
     @JsonProperty("material")

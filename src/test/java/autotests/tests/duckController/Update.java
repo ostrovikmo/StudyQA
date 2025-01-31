@@ -1,6 +1,6 @@
-package tests.duckController;
+package autotests.tests.duckController;
 
-import clients.DuckActionsClient;
+import autotests.clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
