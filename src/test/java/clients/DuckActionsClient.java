@@ -14,9 +14,10 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 import static com.consol.citrus.actions.ExecuteSQLAction.Builder.sql;
+import static com.consol.citrus.actions.ExecuteSQLQueryAction.Builder.query;
 import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
-import static org.springframework.jdbc.core.JdbcOperationsExtensionsKt.query;
+
 
 
 
