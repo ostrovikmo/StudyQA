@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import autotests.payloads.Duck;
 import autotests.payloads.WingState;
 
+@Epic("Тесты на duck-action-controller")
+@Feature("эндпоинт /api/duck/action/properties")
 public class Properties extends DuckActionsClient {
 
     @Test(description = "Проверка какие свойства имеет утка")

@@ -17,13 +17,13 @@ import org.testng.annotations.Test;
 public class Create extends DuckActionsClient {
 
 
-//    параметризированные тесты
-duckUpdate duckProperties1 = new duckUpdate()
+    //    параметризированные тесты
+    duckUpdate duckProperties1 = new duckUpdate()
             .color("yellow")
             .height(0.05)
             .material("rubber")
             .sound("quack")
-        .wingsState("ACTIVE");
+            .wingsState("ACTIVE");
     duckUpdate duckProperties2 = new duckUpdate()
             .color("green")
             .height(1.0)
@@ -54,7 +54,7 @@ duckUpdate duckProperties1 = new duckUpdate()
     @CitrusTest
     @CitrusParameters({"payload", "response", "runner"})
     public void successfulDuckCreate(Object payload, String response, @Optional @CitrusResource TestCaseRunner runner) {
-        duckCreate(runner, payload);
+        createDuck(runner, payload);
         validateResponse(runner, response);
     }
     @DataProvider(name = "duckList")
@@ -71,7 +71,7 @@ duckUpdate duckProperties1 = new duckUpdate()
     @Test (description = "Создание утки из резины")
     @CitrusTest
     public void successfulCreateRubber(@Optional @CitrusResource TestCaseRunner runner) {
-        duckCreate(runner, "yellow", "0.15", "rubber", "quack", "ACTIVE");
+        createDuck(runner, "yellow", "0.15", "rubber", "quack", "ACTIVE");
         getDuckId(runner);
         validateDuckInDatabase(runner, "${duckId}", "yellow", "0.15", "rubber", "quack", "ACTIVE");
     }
@@ -80,10 +80,8 @@ duckUpdate duckProperties1 = new duckUpdate()
     @Test (description = "Создание утки из дерева")
     @CitrusTest
     public void successfulCreateWood(@Optional @CitrusResource TestCaseRunner runner) {
-        duckCreate(runner, "yellow", "0.15", "wood", "quack", "ACTIVE");
+        createDuck(runner, "yellow", "0.15", "wood", "quack", "ACTIVE");
         getDuckId(runner);
         validateDuckInDatabase(runner, "${duckId}", "yellow", "0.15", "wood", "quack", "ACTIVE");
     }
 }
-
-

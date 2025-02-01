@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
+@Epic("Тесты на duck-controller")
+@Feature("эндпоинт /api/duck/delete")
 public class Delete extends DuckActionsClient {
 
     @Test(description = "Проверка, что уточка с существующим id удалена")

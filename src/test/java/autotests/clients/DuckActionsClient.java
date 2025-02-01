@@ -3,42 +3,24 @@ package autotests.clients;
 import autotests.BaseTest;
 import autotests.EndpointConfig;
 import com.consol.citrus.TestCaseRunner;
-<<<<<<< Updated upstream:src/test/java/clients/DuckActionsClient.java
 import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
 import com.consol.citrus.testng.spring.TestNGCitrusSpringSupport;
 import com.fasterxml.jackson.databind.ObjectMapper;
-=======
 import io.qameta.allure.Step;
->>>>>>> Stashed changes:src/test/java/autotests/clients/DuckActionsClient.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-<<<<<<< Updated upstream:src/test/java/clients/DuckActionsClient.java
 import org.springframework.http.MediaType;
-=======
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
->>>>>>> Stashed changes:src/test/java/autotests/clients/DuckActionsClient.java
 import org.springframework.test.context.ContextConfiguration;
 
+
+import static com.consol.citrus.actions.ExecuteSQLAction.Builder.sql;
+import static com.consol.citrus.actions.ExecuteSQLQueryAction.Builder.query;
 import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
+import static org.springframework.jdbc.core.JdbcOperationsExtensionsKt.query;
 
-<<<<<<< Updated upstream:src/test/java/clients/DuckActionsClient.java
-@ContextConfiguration(classes= {EndpointConfig.class})
-
-public class DuckActionsClient extends TestNGCitrusSpringSupport {
-    @Autowired
-    protected HttpClient DuckService;
-
-     public void validateResponse(TestCaseRunner runner, String responseMessage) {
-         runner.$(http().client(DuckService)
-                 .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(new ClassPathResource(responseMessage)));
-    }
-=======
 
 @ContextConfiguration(classes= {EndpointConfig.class})
 
@@ -67,7 +49,6 @@ protected void validateDuckInDatabase(TestCaseRunner runner, String id, String c
             .validate("SOUND",sound)
             .validate("WINGS_STATE",wingsState));
 }
->>>>>>> Stashed changes:src/test/java/autotests/clients/DuckActionsClient.java
 
     //получение ID утки
     public void getDuckId(TestCaseRunner runner) {
@@ -79,70 +60,23 @@ protected void validateDuckInDatabase(TestCaseRunner runner, String id, String c
                 .extract(fromBody().expression("$.id", "duckId")));
     }
 
-    //новый вариант создания утки
-    public void createDuck(TestCaseRunner runner, Object body) {
-            runner.$(http().client(DuckService)
-                    .send()
-                    .post("/api/duck/create")
-                    .message()
-                    .contentType(MediaType.APPLICATION_JSON_VALUE)
-                    .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
-        }
-
-    //обновление свойств утки
-    public void duckUpdate(TestCaseRunner runner,Object body) {
-        runner.$(http().client(DuckService)
-                .send()
-                .put("/api/duck/update")
-                .message()
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
+    //создание утки
+    @Step("Эндпоинт для создания уточки")
+    public void createDuck(TestCaseRunner runner, Object
+            payload) {
+        sendPostRequest(runner, DuckService,
+                "/api/duck/create", payload);
     }
 
-<<<<<<< Updated upstream:src/test/java/clients/DuckActionsClient.java
-    //Плыви утка
-    public void duckSwim(TestCaseRunner runner, String id) {
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .get("/api/duck/action/swim")
-                .queryParam("id", id));
-    }
-
-    //Лети  утка
-    public void duckFly(TestCaseRunner runner, String id) {
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .get("/api/duck/action/fly")
-                .queryParam("id", id));
-=======
     @Step("Эндпоинт для обновления свойств утки")
     public void duckUpdate(TestCaseRunner runner, String id) {
         sendPutRequest(runner, DuckService,
                 "/api/duck/update","id", id, "color", color, "height", height,
                 "material", material, "sound", sound, "wingsState", wingsState);
->>>>>>> Stashed changes:src/test/java/autotests/clients/DuckActionsClient.java
     }
 
-    //Крякай утка
+    @Step("Эндпоинт для кряканья уточки")
     public void duckQuack(TestCaseRunner runner, String id, int repetitionCount, int soundCount) {
-<<<<<<< Updated upstream:src/test/java/clients/DuckActionsClient.java
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .get("/api/duck/action/quack")
-                .queryParam("id", id));
-    }
-
-    //Свойства утки
-    public void duckProperties(TestCaseRunner runner, String id) {
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .get("/api/duck/action/properties")
-                .queryParam("id", id));
-=======
         sendGetRequestQuack(runner, DuckService,
                 "/api/duck/action/quack", "id", id, "repetitionCount",repetitionCount, "soundCount",soundCount);
     }
@@ -165,29 +99,11 @@ protected void validateDuckInDatabase(TestCaseRunner runner, String id, String c
     public void duckProperties(TestCaseRunner runner, String id) {
         sendGetRequest(runner, DuckService,
                 "/api/duck/action/properties", "id", id);
->>>>>>> Stashed changes:src/test/java/autotests/clients/DuckActionsClient.java
     }
 
-    //вызов созданной утки по id
-    public void getDuck(TestCaseRunner runner, String id) {
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .post("/api/duck/create")
-                .queryParam("id", id));
-    }
-
-    //удалить утку
+    @Step("Эндпоинт для удаления уточки")
     public void duckDelete(TestCaseRunner runner, String id) {
-<<<<<<< Updated upstream:src/test/java/clients/DuckActionsClient.java
-        runner.$(http()
-                .client(DuckService)
-                .send()
-                .delete("/api/duck/action/delete")
-                .queryParam("id", id));
-=======
         sendDeleteRequest(runner, DuckService,
                 "/api/duck/action/delete", "id",id);
->>>>>>> Stashed changes:src/test/java/autotests/clients/DuckActionsClient.java
     }
 }

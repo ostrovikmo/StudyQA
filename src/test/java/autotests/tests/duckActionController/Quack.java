@@ -9,6 +9,9 @@ import org.testng.annotations.Test;
 import autotests.payloads.Duck;
 import autotests.payloads.WingState;
 
+@Epic("Тесты на duck-action-controller")
+@Feature("эндпоинт /api/duck/action/quack")
+
 public class Quack extends DuckActionsClient {
 
     @Test(description = "Проверка, что уточка с существующим id крякает")

@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import payloads.Duck;
 import payloads.WingState;
 
+@Epic("Тесты на duck-controller")
+@Feature("эндпоинт /api/duck/update")
 public class Update extends DuckActionsClient {
 
         @Test(description = "Проверка, что у уточки с существующим id были изменены цвет и высота")
